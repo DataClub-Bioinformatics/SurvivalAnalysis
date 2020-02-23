@@ -1,0 +1,1 @@
+Here we will make a collection of all nessecary plots for survuval analysis
