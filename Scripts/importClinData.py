@@ -25,9 +25,9 @@ def getCensorDays(row):
     #    print(clinData['Vital date:'])
         return (date.fromisoformat(row['Vital date:']) - date.fromisoformat(row['Surgery date:'])).days
 
-
 # get censor and status columns and merge into one dataframe
-clinData['censorDay']=clinData.apply(getCensorDays, axis=1)
+clinData['censorInDays']=clinData.apply(getCensorDays, axis=1)
+
 
 
 
