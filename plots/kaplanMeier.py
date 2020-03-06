@@ -11,9 +11,7 @@ def plotKaplanMeier(dataFrame, label1, label2) :
     group1=dataFrame[dataFrame['Treatment']==1]
     group2=dataFrame[dataFrame['Treatment']==0]
     T=group1['t']
-    print(T)
     E=group1['status']
-    print(E)
     T1=group2['t']
     E1=group2['status']
 

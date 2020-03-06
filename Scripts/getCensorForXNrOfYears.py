@@ -1,12 +1,22 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+import pandas as pd
 
-def getCensorForXNrOfYears(censorInDays, status, years):
+def get(censorInDays, status, years):
 
-    # TODO: We want to write code that takes in censorInDays for all patients
-    # from the output of the importClinData.py script
-    # censorInDays is number of days since surgery. then we want 
-    # to check if for a given year lets say 3years
-    # If censorInDays>3 years then change status to alive if dead. 
-    # Return list with new status of x year survival.
+    data = pd.DataFrame(censorInDays)
+    data['status']=status
+
+    def revalueStatus(row):
+        if (row.censorInDays/365>years and int(row.status) == 0):
+            return 1
+        else:
+            return row.status
+    
+    return(data.apply(revalueStatus, axis=1))
+
+#    print(test)
+
+
+    
     
