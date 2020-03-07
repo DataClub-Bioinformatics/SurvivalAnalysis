@@ -3,18 +3,17 @@
 
 from lifelines import KaplanMeierFitter
 import matplotlib.pyplot as plt
+import Scripts.getCensorForXNrOfYears as censor
 
-def plotKaplanMeier(dataFrame, label1, label2) :
+def plotKaplanMeier(dataFrame1, dataFrame2, label1, label2, years):
     
-    #TODO: We want to make this generic so we dont need t and status
-    # but instead of one dataframe we want to send in two groups a
-    group1=dataFrame[dataFrame['Treatment']==1]
-    group2=dataFrame[dataFrame['Treatment']==0]
-    T=group1['t']
-    E=group1['status']
-    T1=group2['t']
-    E1=group2['status']
-
+  # input censor and status for x years and return current status
+    d1=censor.getStatusForXYears(dataFrame1.censorInDays, dataFrame1.Status, 3)
+    d2=censor.getStatusForXYears(dataFrame2.censorInDays, dataFrame2.Status, 3)
+    T=d1.censorInDays
+    E=d1.status
+    T1=d2.censorInDays
+    E1=d2.status
     kmf = KaplanMeierFitter()
 
     ax = plt.subplot(111)

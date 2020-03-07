@@ -3,11 +3,10 @@
 
 import pandas as pd 
 from datetime import date  
-import getCensorForXNrOfYears as censor
 import math
 
 # Path to file change where your clin data file is
-path = "/Users/VictorPonten/code/Bioinf/data/bomiClin.csv"
+path = r"C:\Users\beckm\code\data\bomiClin.csv"
 
 # Read file with separator ;
 clinData = pd.read_csv(path,sep=';') 
@@ -41,11 +40,8 @@ clinData['censorInDays']=clinData.apply(getCensorDays, axis=1)
 clinData = clinData[clinData.censorInDays.notna()]
 
 # I think its more inutitive when dead is 0 and alive is 1
-clinData.Status=clinData.Status.apply(invertStatus).astype(int)
+#clinData.Status=clinData.Status.apply(invertStatus).astype(int)
 
 #remove less than 10(?) in days because cause of death is uncertain
 clinData = clinData[clinData.censorInDays>10]
-
-# input censor and status for x years and return current status
-clinData['3yrSurvival'] = censor.getStatusForXYears(clinData.censorInDays, clinData.Status, 3)
 
