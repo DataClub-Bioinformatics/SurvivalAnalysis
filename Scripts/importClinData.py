@@ -4,9 +4,10 @@
 import pandas as pd 
 from datetime import date  
 import math
+from Config.myConfigs import path
 
 # Path to file change where your clin data file is
-path = r"C:\Users\beckm\code\data\bomiClin.csv"
+
 
 # Read file with separator ;
 clinData = pd.read_csv(path,sep=';') 

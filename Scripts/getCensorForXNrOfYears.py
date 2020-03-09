@@ -13,7 +13,7 @@ def getStatusForXYears(censorInDays, status, years):
     #after if so, change status for patient else return status
     def revalueStatus(row):
         if (row.censorInDays/365>years):
-            row.censorInDays=years*365
+           # row.censorInDays=years*365
             if (int(row.status) == 0):
                 row.status=1
     
